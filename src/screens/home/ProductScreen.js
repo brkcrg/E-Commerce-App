@@ -19,9 +19,12 @@ import NumericInput from "react-native-numeric-input";
 
 //import RnIncrementDecrementBtn from "react-native-increment-decrement-button";
 
-const ProductDetailScreen = (navigation, route) => {
-  const [item, setItem] = useState([]);
+const ProductDetailScreen = ({ route, navigation }) => {
   const animate = useRef(new Animated.Value(0)).current;
+  //const [product, setProduct] = useState([route.params]);
+  //const product = navigation.getParam("name");
+  const { title } = route.params;
+
   //setItem(route.params.product);
   useEffect(() => {
     Animated.timing(animate, {
@@ -29,11 +32,14 @@ const ProductDetailScreen = (navigation, route) => {
       duration: 10000,
     }).start();
   }, [animate]);
+  const RenderItem = () => {
+    return <View></View>;
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={() => navigation.navigate("Home")}>
+        <Pressable onPress={() => navigation.goBack()}>
           <MaterialCommunityIcons
             name="arrow-left"
             size={26}
@@ -51,18 +57,8 @@ const ProductDetailScreen = (navigation, route) => {
       </View>
       <View style={styles.box1_name}>
         <Animated.View style={{ opacity: animate }}>
-          <Text style={styles.box1_name}> Hallingdal Chair</Text>
+          <Text style={styles.box1_name}>{title}</Text>
         </Animated.View>
-        <NumericInput
-          totalWidth={100}
-          totalHeight={60}
-          rounded
-          iconStyle={{ color: "white" }}
-          rightButtonBackgroundColor="green"
-          leftButtonBackgroundColor="#B22222"
-          valueType="integer"
-          minValue={1}
-        ></NumericInput>
       </View>
       <View style={styles.box2_detail_title}>
         <Text style={styles.box2_detail_title}>sdfkpasujgag</Text>
@@ -116,8 +112,8 @@ const styles = StyleSheet.create({
 
     paddingTop: 10,
     paddingRight: 30,
-    //textAlign: "justify",
-    justifyContent: "space-between",
+    textAlign: "justify",
+    //justifyContent: "space-between",
     flexDirection: "row",
   },
   box1_name_count: {

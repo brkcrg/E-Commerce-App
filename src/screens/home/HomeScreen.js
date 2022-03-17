@@ -56,7 +56,9 @@ const HomeScreen = ({ navigation }) => {
 
         <View style={styles.box2_box_element_detail}>
           <Pressable
-            onPress={() => navigation.navigate("Product", { product: item })}
+            onPress={() =>
+              navigation.navigate("Product", { title: item.title })
+            }
           >
             <Text style={styles.box2_detail_name}>{item.title}</Text>
           </Pressable>

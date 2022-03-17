@@ -20,7 +20,9 @@ import NumericInput from "react-native-numeric-input";
 import CartContext from "../../store/CartContext";
 const CartScreen = () => {
   const { cart, setCart } = useContext(CartContext);
+
   const renderItem = ({ item }) => {
+    var count = item.quantity;
     return (
       <View style={styles.cartbox}>
         <View style={styles.cartbox_photo}>
@@ -70,6 +72,7 @@ const CartScreen = () => {
                 leftButtonBackgroundColor="#B22222"
                 valueType="integer"
                 minValue={1}
+                initValue={item.quantity}
               ></NumericInput>
             </View>
             {/* <View style={styles.cartbox_nameandprice_price_buttons}>
